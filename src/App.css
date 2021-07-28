@@ -1,1 +1,71 @@
-/* Other rules */
+/* HEADER */
+
+.rules {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.header-container {
+  margin: 0 auto;
+  border: purple solid 1px;
+}
+
+header {
+  height: 150px;
+  width: 100%;
+  border: black 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* HERO */
+
+.hero {
+  border: solid blue 1px;
+  height: 450px;
+  background-image: url("./assets/imgs/hero.vinty.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  margin-bottom: 70px;
+}
+
+.hero-box {
+  height: 250px;
+  width: 400px;
+  border: solid salmon 1px;
+  position: absolute;
+  top: 90px;
+  left: 210px;
+  background-color: #fff;
+}
+
+/* BODY HOME */
+
+.offers-box {
+  margin: 0 auto;
+  border: sienna solid 1px;
+  height: 100%;
+  width: 75%;
+}
+
+/* OFFER PAGE */
+
+.offer-container {
+  background-color: rgb(238, 238, 238);
+  height: 800px;
+  width: 100%;
+  border: solid 1px peru;
+  margin-top: 40px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.offer-container > div {
+  height: 600px;
+  border: solid black 1px;
+  width: 400px;
+}
