@@ -38,7 +38,6 @@ function Home() {
         ) : (
           <div className="offers-box">
             {data.map((category, index) => {
-              console.log(category._id);
               return (
                 <Link to={`/offer/${category._id}`}>
                   <div key={category._id}>

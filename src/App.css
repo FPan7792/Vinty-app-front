@@ -78,3 +78,27 @@ header {
   border: solid black 1px;
   width: 400px;
 }
+
+/* SIGNUP PAGE */
+
+.signup-container {
+  width: 500px;
+  border: solid 1px red;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.signup-form input {
+  margin-bottom: 20px;
+  height: 50px;
+  text-align: center;
+}
