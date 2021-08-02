@@ -1,20 +1,73 @@
-import App from "../";
-import Header from "../components/Header";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://vinty-app.herokuapp.com/offers"
+        );
+        console.log(response.data);
+        setData(response.data.offers);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div>
-      <Header />
-
       <section className="hero">
         <div className="hero-box">
-          <h1>Title</h1>
-          <button>Commencer à vendre </button>
+          <h1>Made w/ Love by FPan7792</h1>
+          <Link to="/offer/publish">
+            <button>Commencer à vendre</button>
+          </Link>
         </div>
       </section>
 
-      <section className="offers-box">
-        <div>Offers</div>
+      <section>
+        {isLoading ? (
+          <span>Loading .. 🎛</span>
+        ) : (
+          <div className="offers-box">
+            {data.map((category, index) => {
+              console.log(category._id);
+              return (
+                <Link to={`/offer/${category._id}`}>
+                  <div key={category._id}>
+                    <div className="each-offer">
+                      {category.owner}
+                      <img
+                        src={category.product_image.secure_url}
+                        alt={category.product_name}
+                        width="200"
+                      />
+                      <strong>{category.product_price} €</strong>
+                    </div>
+                    <div>
+                      {category.product_details.map((detail, index) => {
+                        return (
+                          <div key={index}>
+                            {detail.MARQUE}
+                            {detail.TAILLE}
+                            {detail.EMPLACEMENT}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );

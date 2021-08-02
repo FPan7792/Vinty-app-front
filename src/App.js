@@ -1,32 +1,34 @@
 import "./App.css";
+import Header from "./components/Header.js";
 import Home from "./containers/Home.js";
 import Offer from "./containers/Offer.js";
+import Signup from "./containers/Signup.js";
+import Login from "./containers/Login.js";
+import Publish from "./containers/Publish.js";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/offer">Offer</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route path="/offer">
-            <Offer />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+      <Header />
+      <Switch>
+        <Route path="/user/signup">
+          <Signup />
+        </Route>
+        <Route path="/user/login">
+          <Login />
+        </Route>
+        <Route exact path="/offer/publish">
+          <Publish />
+        </Route>
+        <Route path="/offer/:id">
+          <Offer />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </Router>
   );
 }
