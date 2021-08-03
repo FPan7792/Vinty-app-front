@@ -6,12 +6,14 @@ import Signup from "./containers/Signup.js";
 import Login from "./containers/Login.js";
 import Publish from "./containers/Publish.js";
 import { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function App() {
   // let token = "";
   const [userToken, setUserToken] = useState(null);
+
   return (
     <Router>
       <Header userToken={userToken} setUserToken={setUserToken} />
@@ -23,12 +25,12 @@ export default function App() {
           <Login userToken={userToken} setUserToken={setUserToken} />
         </Route>
         <Route exact path="/offer/publish">
-          <Publish />
+          {userToken !== null ? <Publish /> : <Redirect to="/user/login" />}
         </Route>
         <Route path="/offer/:id">
           <Offer />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Home />
         </Route>
       </Switch>

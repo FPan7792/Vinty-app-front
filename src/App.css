@@ -102,3 +102,24 @@ header {
   height: 50px;
   text-align: center;
 }
+
+.publishpage-form-container {
+  margin: 0 auto;
+  border: solid pink 1px;
+  width: 70%;
+  height: 100%;
+  padding: 20px;
+}
+
+.publishpage-form-container > div {
+  margin: 0 auto;
+  border: solid brown 1px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.publishpage-form-container > div > div {
+  margin: 0 auto;
+  /* border: solid brown 1px; */
+  width: 100%;
+}
