@@ -10,6 +10,11 @@ const Header = ({ userToken, setUserToken }) => {
           <img src={logo} alt="Logo" width="80" />
         </Link>
         <div>
+          <form action="">
+            <input type="text" />
+          </form>
+        </div>
+        <div>
           {userToken === null ? (
             <nav>
               <Link to="/user/signup">
@@ -18,20 +23,25 @@ const Header = ({ userToken, setUserToken }) => {
               <Link to="/user/login">
                 <button>Se connecter</button>
               </Link>
-              <Link to="/offer/publish">
-                <button>Vends tes articles</button>
-              </Link>
             </nav>
           ) : (
-            <button
-              onClick={() => {
-                Cookies.remove("token");
-                setUserToken(null);
-              }}
-            >
-              Se deconnecter
-            </button>
+            <div>
+              <button
+                style={{ backgroundColor: "brown" }}
+                onClick={() => {
+                  Cookies.remove("token");
+                  setUserToken(null);
+                }}
+              >
+                Se deconnecter
+              </button>
+            </div>
           )}
+          <div>
+            <Link to="/offer/publish">
+              <button>Vends tes articles</button>
+            </Link>
+          </div>
         </div>
       </header>
     </>

@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 
-function Signup({ userToken, setUserToken }) {
+function Signup({ setUserToken }) {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,7 +51,6 @@ function Signup({ userToken, setUserToken }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(userName, password, email);
     await signUp();
     history.push("/");
   };
@@ -82,7 +81,11 @@ function Signup({ userToken, setUserToken }) {
           value={password}
           onChange={handlePasswordChange}
         />
-        <input type="submit" value="Signup" />
+        <input
+          style={{ border: "solid 2px ", cursor: "pointer" }}
+          type="submit"
+          value="Signup"
+        />
       </form>
     </div>
   );

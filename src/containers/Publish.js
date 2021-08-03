@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
 
 function Publish() {
-  const [data, setData] = useState();
+  const history = useHistory();
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -48,28 +50,70 @@ function Publish() {
     setCondition(value);
   };
   const handlePictureChange = (event) => {
-    const value = event.target.value;
+    const value = event.target.files[0];
     setPicture(value);
+  };
+
+  const formData = new FormData();
+  formData.append("product_name", name);
+  formData.append("product_description", description);
+  formData.append("product_price", price);
+  formData.append("product_image", picture);
+  formData.append("ETAT", condition);
+  formData.append("TAILLE", size);
+  formData.append("COULEUR", color);
+  formData.append("MARQUE", brand);
+  formData.append("EMPLACEMENT", place);
+
+  const publishAnounce = async () => {
+    if (
+      name === "" ||
+      picture === "" ||
+      description === "" ||
+      price === "" ||
+      condition === "" ||
+      size === "" ||
+      place === ""
+    ) {
+      alert("All the fields are required");
+    } else {
+      try {
+        const response = await axios.post(
+          "https://vinty-app.herokuapp.com/offer/publish",
+          formData,
+          { headers: { authorization: `Bearer ${Cookies.get("token")}` } }
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(name, description, price, condition, size, price, color, place);
+    console.log(
+      name,
+      description,
+      price,
+      condition,
+      size,
+      color,
+      place,
+      picture,
+      brand
+    );
+    publishAnounce();
+    history.push("/");
   };
 
   return (
-    <div>
+    <div className="signup-container">
       <h1>Sell your items </h1>
       <form className="publishpage-form-container" onSubmit={handleSubmit}>
         <div>
           <div>
-            <input
-              type="file"
-              placeholder="Add a picture"
-              name="file"
-              value={picture}
-              onChange={handlePictureChange}
-            />
+            <input type="file" onChange={handlePictureChange} />
           </div>
         </div>
         <div>
@@ -89,7 +133,7 @@ function Publish() {
             <span>Describe your item</span>
             <span>
               <input
-                type="text"
+                type=""
                 placeholder=""
                 name="description"
                 value={description}
@@ -159,19 +203,20 @@ function Publish() {
               />
             </span>
           </div>
+          <div>
+            <span>Prix</span>
+            <span>
+              <input
+                type="text"
+                placeholder=""
+                name="price"
+                value={price}
+                onChange={handlePriceChange}
+              />
+            </span>
+          </div>
         </div>
-        <div>
-          <span>Prix</span>
-          <span>
-            <input
-              type="text"
-              placeholder=""
-              name="price"
-              value={price}
-              onChange={handlePriceChange}
-            />
-          </span>
-        </div>
+
         <input type="submit" value="Add" />
       </form>
     </div>

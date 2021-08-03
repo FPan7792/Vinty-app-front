@@ -5,24 +5,49 @@
   width: 100%;
 }
 
+button {
+  cursor: pointer;
+}
+
 .header-container {
   margin: 0 auto;
-  border: purple solid 1px;
+  width: 100%;
 }
 
 header {
   height: 100%;
   width: 100%;
-  border: black 1px solid;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+header input {
+  width: 600px;
+  background-color: #ebc7a0;
+  opacity: 50%;
+  border-radius: 5px;
+  /* margin-right: 600px; */
+  border: none;
+  height: 40px;
+}
+
+header button {
+  border: none;
+  margin-left: 40px;
+  background-color: #ebc7a0;
+  height: 30px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+header div {
+  display: flex;
+}
+
 /* HERO */
 
 .hero {
-  border: solid blue 1px;
   height: 450px;
   background-image: url("./assets/imgs/hero.jpg");
   background-position: center;
@@ -34,29 +59,47 @@ header {
 .hero-box {
   height: 250px;
   width: 400px;
-  border: solid salmon 1px;
   position: absolute;
   top: 90px;
   left: 210px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Rubik", sans-serif;
+}
+
+.hero-box button {
+  background-color: #ebc7a0;
+  border: none;
+  height: 40px;
+  color: white;
+  border-radius: 5px;
+  width: 200px;
 }
 
 /* BODY HOME */
 
 .offers-box {
   margin: 0 auto;
-  border: sienna solid 3px;
   height: 100%;
   width: 75%;
   display: flex;
   justify-content: space-between;
+  font-family: "Rubik", sans-serif;
+}
+
+.offers-box img {
+  border: black solid 2px;
+  border-radius: 10px;
 }
 
 .each-offer {
   display: flex;
   flex-direction: column;
   flex: 1;
-  border: 1px solid purple;
+  border-radius: 10px;
 }
 
 /* OFFER PAGE */
@@ -65,7 +108,6 @@ header {
   background-color: rgb(238, 238, 238);
   height: 800px;
   width: 100%;
-  border: solid 1px peru;
   margin-top: 40px;
   padding: 20px;
   display: flex;
@@ -79,16 +121,18 @@ header {
   width: 400px;
 }
 
-/* SIGNUP PAGE */
+/* SIGNUP & LOGIN PAGE */
 
 .signup-container {
   width: 500px;
-  border: solid 1px red;
-  margin: 50px auto;
+  border: solid 3px black;
+  margin: 150px auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border-radius: 10px;
+  background-color: #ebc7a0;
 }
 
 .signup-form {
@@ -101,11 +145,12 @@ header {
   margin-bottom: 20px;
   height: 50px;
   text-align: center;
+  border-radius: 10px;
+  border: black 1px;
 }
 
 .publishpage-form-container {
   margin: 0 auto;
-  border: solid pink 1px;
   width: 70%;
   height: 100%;
   padding: 20px;
@@ -113,13 +158,28 @@ header {
 
 .publishpage-form-container > div {
   margin: 0 auto;
-  border: solid brown 1px;
   width: 100%;
   margin-bottom: 20px;
 }
 
 .publishpage-form-container > div > div {
   margin: 0 auto;
-  /* border: solid brown 1px; */
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.publishpage-form-container input {
+  height: 30px;
+  width: 200px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+/* PAYMENT PAGE  */
+
+.payment-form-container {
+  border: solid black;
+  margin: 0 auto;
+  width: 600px;
+  height: 700px;
 }

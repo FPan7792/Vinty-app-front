@@ -12,7 +12,7 @@ function Home() {
         const response = await axios.get(
           "https://vinty-app.herokuapp.com/offers"
         );
-        console.log(response.data);
+        console.log(response.data.offers);
         setData(response.data.offers);
         setIsLoading(false);
       } catch (error) {

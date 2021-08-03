@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function Login({ userToken, setUserToken }) {
+function Login({ setUserToken }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,7 +30,9 @@ function Login({ userToken, setUserToken }) {
           }
         );
         console.log(response.data);
-        setUserToken(Cookies.set("token", response.data.token));
+        setUserToken(
+          Cookies.set("token", response.data.token, { expires: 30 })
+        );
         history.push("/");
       } else {
         alert("All the fields are required");
@@ -65,7 +67,11 @@ function Login({ userToken, setUserToken }) {
           value={password}
           onChange={handlePasswordChange}
         />
-        <input type="submit" value="Log in" />
+        <input
+          style={{ border: "solid 2px ", cursor: "pointer" }}
+          type="submit"
+          value="Log in"
+        />
       </form>
     </div>
   );
