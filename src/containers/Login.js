@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function Login({ setUserToken }) {
+function Login({ setUserToken, userId, setUserId }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,6 +33,7 @@ function Login({ setUserToken }) {
         setUserToken(
           Cookies.set("token", response.data.token, { expires: 30 })
         );
+        setUserId(response.data.id);
         history.push("/");
       } else {
         alert("All the fields are required");

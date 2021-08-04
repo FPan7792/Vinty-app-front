@@ -12,6 +12,8 @@ button {
 .header-container {
   margin: 0 auto;
   width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 header {
@@ -27,7 +29,6 @@ header input {
   background-color: #ebc7a0;
   opacity: 50%;
   border-radius: 5px;
-  /* margin-right: 600px; */
   border: none;
   height: 40px;
 }
@@ -54,6 +55,8 @@ header div {
   background-size: cover;
   position: relative;
   margin-bottom: 70px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .hero-box {
@@ -113,6 +116,9 @@ header div {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  font-family: "Rubik", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .offer-container > div {
@@ -133,6 +139,9 @@ header div {
   flex-direction: column;
   border-radius: 10px;
   background-color: #ebc7a0;
+  font-family: "Rubik", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .signup-form {
@@ -154,6 +163,8 @@ header div {
   width: 70%;
   height: 100%;
   padding: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .publishpage-form-container > div {
@@ -182,4 +193,7 @@ header div {
   margin: 0 auto;
   width: 600px;
   height: 700px;
+  font-family: "Rubik", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

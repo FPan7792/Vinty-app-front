@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 
-function Signup({ setUserToken }) {
+function Signup({ setUserToken, setUserId }) {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,6 +41,7 @@ function Signup({ setUserToken }) {
         setUserToken(
           Cookies.set("token", response.data.token, { expires: 30 })
         );
+        setUserId(response.data.id);
       } else {
         alert("All the fields are required");
       }

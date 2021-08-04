@@ -1,31 +1,33 @@
-import { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import Cookies from "js-cookie";
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 import axios from "axios";
 
-function Payment() {
-  const stripe = useStripe();
+const PayValid = ({ product_description, product_price, userId }) => {
   const elements = useElements();
-  const location = useLocation;
+  const stripe = useStripe();
 
   const [completed, setCompleted] = useState(false);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const cardElement = elements.getElement(CardElement);
-    const stripeResponse = await stripe.createToken(cardElement, {
-      name: Cookies.get("token"),
-    });
-    console.log(stripeResponse);
-    const stripeToken = stripeResponse.token.id;
-
     try {
+      event.preventDefault();
+      const cardElement = elements.getElement(CardElement);
+      const stripeResponse = await stripe.createToken(cardElement, {
+        name: userId,
+      });
+      console.log(stripeResponse);
+      const stripeToken = stripeResponse.token.id;
+      console.log(stripeToken);
+      console.log(product_price);
+      console.log(product_description);
+
       const response = await axios.post(
         "https://vinty-app.herokuapp.com/payment",
         {
           stripe_token: stripeToken,
+          product_price: product_price,
+          product_description: product_description,
         }
       );
       console.log(response.data);
@@ -34,28 +36,31 @@ function Payment() {
       console.log(error.response);
     }
   };
+  const sellerCharges = 0.4;
+  const provideCharges = 0.8;
+  const total = sellerCharges + provideCharges + product_price;
   return (
     <div>
       <div className="payment-form-container">
-        <p>Résume de la commande </p>
+        <p>{product_description}</p>
         <div>
           <div>
-            <span>{location.test}</span>
             <span>Prix</span>
+            <span>{product_price}</span>
           </div>
           <div>
             <span>Frais protection acheteurs</span>
-            <span>Prix</span>
+            <span>{sellerCharges}</span>
           </div>
           <div>
             <span>Frais de port</span>
-            <span>Prix</span>
+            <span>{provideCharges}</span>
           </div>
           <hr />
           <div>
             <div>
               <span>Total</span>
-              <span>Prix</span>
+              <span>{total}</span>
               <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Voluptatibus dolore facere ut qui odio minima consequatur quae
@@ -68,7 +73,7 @@ function Payment() {
           {!completed ? (
             <form onSubmit={handleSubmit}>
               <CardElement />
-              <button type="submit">Confirmer le paiement </button>
+              <input type="submit" value="Confimer le paiement" />
             </form>
           ) : (
             <span>Paiement validé</span>
@@ -77,6 +82,6 @@ function Payment() {
       </div>
     </div>
   );
-}
+};
 
-export default Payment;
+export default PayValid;

@@ -47,7 +47,18 @@ function Offer() {
           <div>{data.product_description}</div>
           <div>{data.owner._id}</div>
         </div>
-        <Link to="/payments">Acheter</Link>
+        <Link
+          to={{
+            pathname: "/payments",
+            state: {
+              product_description: data.product_description,
+              product_price: data.product_price,
+              owner_id: data.owner_id,
+            },
+          }}
+        >
+          Acheter
+        </Link>
       </div>
     </section>
   );
